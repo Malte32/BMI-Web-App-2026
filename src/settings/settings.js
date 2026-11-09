@@ -203,9 +203,9 @@ function validatePassword({ current, next, repeat }) {
 
 /* --- Start ---------------------------------------------------- */
 
-
-document.addEventListener("DOMContentLoaded", () => {
+function initSettings() {
   const form = document.getElementById("settings-form");
+  if (!form) return;
   const status = document.getElementById("settings-status");
   const passwordForm = document.getElementById("password-form");
   const passwordStatus = document.getElementById("password-status");
@@ -300,4 +300,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     showStatus(passwordStatus, "Passwort geändert", "success");
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSettings);
+} else {
+  initSettings();
+}
